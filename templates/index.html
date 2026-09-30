@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center my-3">
+    <h1 class="text-warning fw-bold">🔥 اشحن جواهر فري فاير مجاناً عن طريق تجميع النقاط 🔥</h1>
+    <p>اجمع 0.5 نقطة يومياً وعند الوصول لـ 2 نقطة استبدلها بـ 100 جوهرة تلقائياً!</p>
+</div>
+
+<script>
+  atOptions = {
+    'key' : '3f0aaacb2fea1b10e151791c7d203864',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<div class="ad-space">
+    <script>
+    atOptions = {
+        'key' : '3f0aaacb2fea1b10e151791c7d203864',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+    };
+    </script>
+<script src="https://highrevenueformat.com"></script>
+</div>
+
+</div>
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <!-- رصيد نقاط المستخدم الحالي -->
+        <div class="card text-center p-4 mb-4">
+            <h4 class="text-white">رصيدك من النقاط حالياً</h4>
+            <h1 class="display-3 text-success fw-bold">{{ user.points }} / {{ max_points }}</h1>
+            
+            <form action="/daily-claim" method="POST">
+                <button type="submit" class="btn btn-success w-100 py-3 fw-bold mt-2 fs-5">🎯 اضغط هنا للمطالبة بـ (+0.5 نقطة اليوم)</button>
+            </form>
+            <small class="text-muted mt-2">تنبيه: زر المطالبة يفتح مرة واحدة كل 24 ساعة فقط.</small>
+        </div>
+
+        <!-- مساحة إعلانية وسط الصفحة -->
+        <div class="ad-space">
+            <p class="text-muted small">إعلان وسط الصفحة - يظهر للمستخدم أثناء العمل على الموقع</p>
+        </div>
+
+        <!-- استبدال الجواهر بالـ ID -->
+        <div class="card p-4">
+            <h3 class="text-center text-info">🛍️ صندوق استبدال الجواهر</h3>
+            <p class="text-center text-muted small">يتم تفعيل هذا الزر تلقائياً فور وصول رصيدك إلى 2.0 نقطة</p>
+            
+            <form action="/redeem" method="POST">
+                <div class="mb-3">
+                    <label for="player_id" class="form-label fw-bold">أدخل معرّف اللاعب (Player ID):</label>
+                    <input type="text" class="form-control text-center fs-5" id="player_id" name="player_id" placeholder="مثال: 54198273" required>
+                </div>
+                <button type="submit" class="btn btn-main w-100 py-3 fs-5" {% if user.points < max_points %}disabled{% endif %}>
+                    🚀 شحن الـ 100 جوهرة فوراً
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

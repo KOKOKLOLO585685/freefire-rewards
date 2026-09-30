@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4 shadow">
+            <h3 class="text-center text-info mb-4">إنشاء حساب جديد للاعب</h3>
+            <form action="/register" method="POST">
+                <div class="mb-3">
+                    <label class="form-label">اسم المستخدم:</label>
+                    <input type="text" class="form-control" name="username" required autocomplete="off">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">كلمة المرور:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-main w-100 py-2 mt-2">تسجيل حساب جديد</button>
+            </form>
+            <p class="mt-3 text-center">لديك حساب بالفعل؟ <a href="/login" class="text-info">سجل دخولك هنا</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

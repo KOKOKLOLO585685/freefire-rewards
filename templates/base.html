@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر شحن جواهر فري فاير المجاني</title>
+    <link rel="stylesheet" href="https://jsdelivr.net">
+    <style>
+        body { background-color: #0b0c10; color: #c5c6c7; font-family: sans-serif; }
+        .navbar { background-color: #1f2833; border-bottom: 2px solid #45f3ff; }
+        .card { background-color: #1f2833; border: 1px solid #45f3ff; border-radius: 12px; color: #fff; }
+        .btn-main { background-color: #45f3ff; color: #0b0c10; font-weight: bold; }
+        .btn-main:hover { background-color: #1f2833; color: #45f3ff; border: 1px solid #45f3ff; }
+        .ad-space { background: #151c24; border: 1px dashed #666; padding: 15px; margin: 15px 0; border-radius: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand text-info fw-bold" href="/">💎 FF REWARDS</a>
+        <div class="navbar-nav ms-auto">
+            {% if session.get('user_id') %}
+                {% if session.get('is_admin') %}
+                    <a class="nav-link text-warning fw-bold" href="/admin">⚙️ لوحة الإدارة</a>
+                {% endif %}
+                <span class="nav-link text-white">مرحباً، {{ session.get('username') }}</span>
+                <a class="nav-link text-danger" href="/logout">تسجيل الخروج</a>
+            {% else %}
+                <a class="nav-link" href="/login">تسجيل الدخول</a>
+                <a class="nav-link" href="/register">إنشاء حساب</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} text-center" role="alert">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %} {% endblock %}
+</div>
+
+</body>
+</html>
